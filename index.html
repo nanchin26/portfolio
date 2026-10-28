@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Portfolio</title>
+  <style>
+    :root {
+      --bg: #dddddd;
+      --text: #FFFFFF;
+      --heading: #1C1917;
+      --surface: #44403C;
+      --accent: #530c18;
+      --accent-hover: #E7E2DD;
+    }
+
+    [data-theme="dark"] {
+      --bg: #141112;
+      --surface: #1F1A1C;
+      --heading: #F5F0EE;
+      --text: #D6CDCA;
+      --accent: #811b2c;
+      --accent-hover: #352D30;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      box-sizing: border-box;
+    }
+  
+    body {
+      padding-bottom: 300px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    div {
+      scroll-margin-top: 80px;
+    }
+
+    .nav {
+      display: flex;
+      flex-direction: row;
+      justify-content: end;
+      align-items: center;
+      background-color: var(--accent);
+      color: var(--text);
+      position: fixed;
+      padding: 25px;
+      top: 0;
+      left: 0;
+      right: 0;
+      margin-top: 10px;
+      z-index: 10;
+    }
+
+    .nav ul {
+      list-style: none;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+    
+    }
+
+   .unordered a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .unordered a:hover {
+      color: rgb(253, 191, 191);
+    }
+
+    .main {
+      margin-top: 65px;
+      background-color: #FFFFFF;
+    }
+
+    /* HERO */
+
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background-color: #FFF8F0;
+      box-shadow: 0 0 10px black;
+      padding: 30px;
+      animation: slideIn 1s ease-out;
+      margin-bottom: 50px;
+    }
+
+    .hero h2 {
+      color: var(--accent);
+    }
+
+    .hero p {
+      text-align: center;
+      font-size: 13px;
+      max-width: 400px;
+    }
+
+    .view-btn, .download-btn {
+      border: 1px solid gray;
+      padding: 10px;
+      border-radius: 10px;
+      color: var(--accent);
+      font-weight: bold;
+    }
+
+    .view-btn:hover,
+    .download-btn:hover {
+      border-color: var(--accent);
+    }
+
+    /* @keyframes slideIn {
+      from {opacity: 0.4;} to {opacity: 1;}
+    }  */
+
+    /* ABOUT */
+
+    .grid1 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      width: 60%;
+      margin: 0 auto;
+    }
+
+    .images {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      width: 100%;
+    }
+
+    .images img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      display: block;
+      border-radius: 8px;
+    }
+
+    .info {
+      display: inline;
+      font-size: 14px;
+      color: rgb(53, 53, 53);
+      line-height: 2;
+      min-width: 0;
+    }
+
+    .info h2 {
+      text-align: center;
+      color: black;
+    }
+
+    @media (max-width: 600px) {
+      .grid1 {
+        grid-template-columns: 1fr;
+      }
+    }
+    /* 
+    
+    
+    .about {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .profile-pic {
+      width: 100px;
+      height: 100px;
+      border-radius: 60px;
+    }
+
+    .about-details {
+      display: flex;
+      justify-content: space-around;
+      gap: 20px;
+    }
+
+    .about-paragraphs p {
+      font-size: 13px;
+      line-height: 20px;
+      align-self: center;
+    } */
+
+    /* PROJECTS */
+    .cards {
+      display: flex;
+      align-items: center;
+      padding: 20px;
+      gap: 30px;
+      overflow-x: auto;
+      flex-wrap: nowrap;
+      scrollbar-width: none;
+    }
+    .card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+      border-radius: 10px;
+      color: black;
+      padding: 20px;
+      min-width: 280px;
+      min-height: 300px;
+      opacity: 0.7;
+      background-color: white;
+      border: 2px solid var(--accent);
+    }
+
+    .card:hover {
+      transform: translate(5px, 5px);
+      box-shadow: 0 0 20px rgb(0, 0, 0);
+    }
+
+    .card a {
+      color: var(--accent);
+      font-size: 14px;
+    }
+
+    /* SKILLS */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .skill-group {
+      background-color: var(--accent);
+      color: var(--text);
+      border: 2px solid rgb(216, 95, 95);
+      border-radius: 100px 0 100px 0;
+      padding: 10px;
+    }
+
+    .skill-group h3 {
+      color: var(--text);
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .chips li {
+      border: 1px solid gray;
+      border-radius: 999px;
+      padding: 10px 15px;
+      font-size: 15px;
+    }
+
+    /* EDUCATION */
+    .education {
+      margin-top: 30px;
+      border: 1px solid var(--accent);
+      border-top-right-radius: 50%;
+      margin-bottom: 150px;
+      max-width: 50%;
+    }
+    .timeline {
+      color: var(--heading);
+    }
+
+    .timeline .meta {
+      color: var(--accent);
+      font-size: 15px;
+      margin-bottom: 8px;
+    }
+
+    .timeline .minor h3 {
+      font-size: 15px;
+    }
+
+    .timeline .minor::before {
+      width: 9px;
+      height: 9px;
+      left: -29.5px;
+    }
+
+    /* FOOTER */
+
+    #contact form {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 32px;
+      background-color: var(--surface);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 16px;
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: pink;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 2px var(--accent);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+    }
+
+    .error {
+      display: block;
+      font-size: 13px;
+      margin-top: 6px;
+      min-height: 16px;
+      color: yellow;
+    }
+
+    #contact .submit-button {
+      width: 100%;
+      padding: 14px;
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    #contact submit-button:hover {
+      background: var(--accent-hover);
+    }
+
+    #form-status {
+      margin-top: 16px;
+      text-align: center;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="nav">
+    <ul class="unordered">
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#footer">Contact</a></li>
+    </ul>
+  </div>
+
+  <div class="main">
+  <div class="hero">
+    <h1>Hi, I'm Nanchin Mitu</h1>
+    <h2>Junior Front-End Developer</h2>
+    <p>I build responsive web interfaces with HTML, CSS, JavaScript and React and I am open to remote junior roles and internships.</p>
+    <button class="view-btn">View My Projects</button>
+    <button class="download-btn">Download CV</button>
+  </div>
+
+  <div id="about" class="grid1">
+    <div class="images">
+    <img src="images/6a64adca06c1fe10082cc37247a10a7a.jpg">
+    <img src="images/f645fffa46e7aaaac0a49ed12fb8595d.jpg">
+    <img src="images/Snapchat-199778304.jpg">
+    <img src="images/spidey.webp">
+    </div>
+    <div class="info">
+      <h2>About Me</h2>
+      <p>I am a junior frontend developer who enjoys turning ideas into clean and responsive interfaces, making the user experience suitable. I build with HTML, CSS, JavaScript, React and Typesscript and I am currently working on some projects that I have listed below. I am always keen to learn from ellaborate projects.</p>
+      <hr>
+    <p>I hold a background in Linguistics from the University of Jos, where my researcg focused on tone in The Mushere Language. The work trained me to notice patterns and pay attention to detail and explain complex ideas.</p>
+    </div>
+  </div>
+  <!-- <div class="about">
+    <h2>About Me</h2>
+    <div class="about-details">
+    <img class="profile-pic" src="images/spidey.webp">
+    <div class="about-paragraphs">
+    <p>I am a junior frontend developer who enjoys turning ideas into clean and responsive interfaces, making the user experience suitable. I build with HTML, CSS, JavaScript, React and Typesscript and I am currently working on some projects that I have listed below. I am always keen to learn from ellaborate projects.</p>
+    <p>I hold a background in Linguistics from the University of Jos, where my researcg focused on tone in The Mushere Language. The work trained me to notice patterns and pay attention to detail and explain complex ideas.</p>
+    </div>
+    </div>
+  </div> -->
+
+  <div id="projects" class="projects">
+    <div class="cards">
+    <div class="card">
+      <h2>SwiftLoom</h2>
+      <p>Role: Frontend Developer & Design Lead</p>
+      <p>Description: A team project in progress that provides a delivery platform connecting customers, vendors and riders.</p>
+      <p>Stack: React</p>
+      <a href="https://github.com/nanchin26/SLWeb">View on Github</a>
+    </div>
+
+    <div class="card">
+      <h2>CareConnect</h2>
+      <p>Role: Frontend Developer</p>
+      <p>Description: An early stage healthcare platform that helps people discover and connect with healthcare providers.</p>
+      <p>Stack: React</p>
+      <a href="https://github.com/nanchin26/CC">View on Github</a>
+    </div>
+
+    <div class="card">
+      <h2>Invoice App Demo</h2>
+      <p>Role: Personal Project</p>
+      <p>Description: An app demo for creating and managing invoices with automatic total calculatio. Data is saved in localStorage, so invoices are saved unless the user deletes them.</p>
+      <p>Stack: React, Typescript</p>
+      <a href="https://github.com/nanchin26/invoice-app">View on Github</a>
+    </div>
+
+    <div class="card">
+      <h2>Habit Tracker</h2>
+      <p>Role: Personal Project</p>
+      <p>Description: A simple app demo for tracking habits, maerking them complete and tracking progress or decline.</p>
+      <p>Stack: Typescript</p>
+      <a href="https://github.com/nanchin26/habit-tracker">View on Github</a>
+    </div>
+
+    </div>
+  </div>
+
+  <div id="skills" class="skills">
+    <h2>Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <h3>Frontend</h3>
+        <ul class="chips">
+          <li>HTML5</li>
+          <li>CSS</li>
+          <li>JavaScript</li>
+          <li>React</li>
+        </ul>
+      </div>
+
+      <div class="skill-group">
+        <h3>UI Development</h3>
+        <ul class="chips">
+          <li>Responsive Design</li>
+          <li>Flexbox</li>
+          <li>CSS Grid</li>
+          <li>DOM Manipulation</li>
+          <li>Event Handling</li>
+        </ul>
+      </div>
+
+      <div class="skill-group">
+        <h3>Application Features</h3>
+        <ul class="chips">
+          <li>React Components</li>
+          <li>LocalStorage</li>
+          <li>Forms and Interfaces</li>
+        </ul>
+      </div>
+
+      <div class="skill-group">
+        <h3>Tools & Workflow</h3>
+        <ul class="chips">
+          <li>Git</li>
+          <li>Github</li>
+          <li>npm</li>
+          <li>VS Code</li>
+          <li>Vercel</li>
+          <li>Vitest</li>
+        </ul>
+      </div>
+
+      <div class="skill-group">
+        <h3>Working Strengths</h3>
+        <ul class="chips">
+          <li>Team Coordination</li>
+          <li>Design Feedback</li>
+          <li>Code Review</li>
+          <li>Problem-solving</li>
+          <li>Research</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <div id="education" class="education">
+    <h2>Education</h2>
+    <ol class="timeline">
+      <li>
+        <h3>University of Jos</h3>
+        <p class="meta">B.A. Linguistics</p>
+        <p>Completed final-year project,<em>A Grammatical Study of Tone in The Mushere Language</em>. Results and formal degree still pending.</p>
+      </li>
+      <li class="minor">
+        <h3>Redeemed People's Academy</h3>
+        <p class="meta">Senior Secondary Education | 2017 to 2020</p>
+      </li>
+      <li class="minor">
+        <h3>Rhemaville Christian Academny</h3>
+        <p class="meta">Junior Secondary Education | 2014 to 2017</p>
+      </li>
+    </ol>
+  </div>
+  
+  <div id="contact" class="footer">
+    <h3>Get in Touch</h3>
+    <p class="contact-intro">Like I mentioned, I am open to remote junior roles, internships and collaboration projects. If you have an opportunity or want to inquire about anything, just rach out.</p>
+    <h3>Contact Details</h3>
+    <ul>
+      <li>Email: riminmitu@gmail.com</li>
+      <li>WhatsApp: +234 809 114 6284</li>
+      <li>GitHub: https://github.com/nanchin26</li>
+    </ul>
+    <form id="contact-form" action="https://formspree.io/f/YOUR_ID" method="POST" nonvalidate>
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" placeholder="Name" required>
+        <small class="error"></small>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" id="email" name="email" placeholder="Email" required>
+        <small class="error"></small>
+      </div>
+
+      <div class="form-group">
+        <label for="message">Message</label>
+        <input type="text" id="message" name="message" rows="5" placeholder="Write your message here..." required>
+        <small class="error"></small>
+      </div>
+      
+      <button type="submit" class="submit-button" onclick="sendMessage()">Send a Message</button>
+      <p id="form-status" aria-live="polite"></p>
+    </form>
+    <p>@2026 Nanchin Mitu . Junior Frontend Developer</p>
+  </div>
+  </div>
+  <script>
+    function sendMessage() {
+      alert('Hello');
+    }
+  </script>
+</body>
+</html>
